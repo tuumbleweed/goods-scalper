@@ -5,7 +5,7 @@ import log from "../util/logger";
 
 /**
  * Scalp all the websites from config.inputWebsites,
- * Send an email address to admin if resulting urlList has any urls in it.
+ * Send an email address to admin if resultList is not empty.
  */
 async function main(): Promise<number> {
 
@@ -13,9 +13,9 @@ async function main(): Promise<number> {
     const browser = await launchBrowser();
     const context = await createBrowserContext(browser);
 
-    const urlList = await scalp.scalpAll(context);
-    log.info(urlList);
-    await email.sendEmail(urlList);
+    const resultList = await scalp.scalpAll(context);
+    log.info(resultList.map(result => result.url));
+    await email.sendEmail(resultList);
 
     return 0;
 }

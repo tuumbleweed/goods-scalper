@@ -7,43 +7,45 @@ import settings from "../util/settings";
 
 /**
  * Iterate through settings.inputWebsites, run scalpWebsite.
- * If it returns an url - add it to urlList.
+ * If it returns an url and screenshot - add it to urlList.
  * @param context 
- * @returns Resulting list of urls where we didn't find "item is out of stock" message.
+ * @returns Resulting list of urls and screenshots where we didn't find "item
+ * is out of stock" message.
  */
-export async function scalpAll(context: BrowserContext): Promise<string[]> {
+export async function scalpAll(context: BrowserContext): Promise<{ url: string, image: string }[]> {
     const page = await createNewPage(context);
-    const urlList: string[] = [];
+    const resultList: { url: string, image: string }[] = [];
 
     for (const website of settings.inputWebsites) {
-        let finalUrl: string;
+        let result: {url: string, image: string};
         try {
-            finalUrl = await scalpWebsite(page, website);
+            result = await scalpWebsite(page, website);
         } catch (err) {
             log.warn(err.message);
         }
-        if (finalUrl) {
-            urlList.push(finalUrl);
+        if (result) {
+            resultList.push(result);
         }
     }
 
     page.close();
 
-    return urlList;
+    return resultList;
 }
 
 /**
  * Visit a page, check for "item is out of stock" message.
  * @param page 
  * @param website 
- * @returns url if message not found, undefined if otherwise.
+ * @returns url and screenshot if message not found, undefined if otherwise.
  */
-async function scalpWebsite(page: Page, website: InputWebsite): Promise<string> {
+async function scalpWebsite(page: Page, website: InputWebsite): Promise<{ url: string, image: string }> {
     const finalUrl = await goTo(page, website.url);
     const noneLeftNotification = await page.$(website.xpathExpr);
+    const buffer = await page.screenshot({ path: `./tmp/screenshots/${new Date()}.png`, fullPage: false });
 
     if (noneLeftNotification == undefined) {
-        return finalUrl;
+        return {url: finalUrl, image: buffer.toString("base64")};
     } else {
         return undefined;
     }
