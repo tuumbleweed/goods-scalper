@@ -1,4 +1,4 @@
-export const logDir = "../log";
+export const logDir = "./log";
 export const secret: Secret = {};
 export const responseCodes: ResponseCodes = {
     info: {
