@@ -33,6 +33,7 @@ export function getSettings(): Settings {
     settings.pgOptions.port = cmdArgs.docker
         ? settings.pgOptions.dockerPort
         : settings.pgOptions.regularPort;
+    settings.inputWebsites = config.inputWebsites;
 
     log.verbose("Settings:");
     log.verbose(settings);

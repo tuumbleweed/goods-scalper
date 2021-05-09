@@ -1,18 +1,20 @@
-import * as db from "../lib/db";
+import * as scalp from "../lib/scalp";
 import { createBrowserContext, launchBrowser } from "../lib/browser";
-import { createNewPage, goTo } from "../lib/page";
 import log from "../util/logger";
 
 /**
- * Example script
+ * Scalp all the websites from config.inputWebsites,
+ * Send an email address to admin if resulting urlList has any urls in it.
  */
 async function main(): Promise<number> {
 
-    log.info("example1 script");
+    log.info("Scalp script");
     const browser = await launchBrowser();
     const context = await createBrowserContext(browser);
-    const page = await createNewPage(context);
-    
+
+    const urlList = await scalp.scalpAll(context);
+    log.info(urlList);
+
     return 0;
 }
 

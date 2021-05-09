@@ -12,13 +12,13 @@ export function getCmdArgs(): CommanderStatic {
             commander.option("-p --port [text]", "API port", "3000");
             commander.option("-i --instance [text]", "Instance Name", "api");
             break;
-        case "scalp-example":
-            commander.name("scalp-example");
+        case "scalp-all":
+            commander.name("scalp-all");
             commander.option("-k --keep", "Keep browser open after task is finished", false);
             commander.option("-h --headless", "Launch browser in headless mode", false);
             commander.option("-b --browser [text]", "chromium, firefox or webkit", "chromium");
             commander.option("--incognito", "Launch browser in incognito mode", false);
-            commander.option("-i --instance [text]", "Instance Name", "scalp-example");
+            commander.option("-i --instance [text]", "Instance Name", "scalp-all");
             break;
         case "example1":
             commander.name("example1");

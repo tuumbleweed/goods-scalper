@@ -74,3 +74,18 @@ export const navOptions: NavOptions = {
 };
 
 export const bypassProxyHosts = ["127.0.0.1", "localhost", "dockerhost"];
+
+export const inputWebsites: InputWebsite[] = [
+    {
+        url: "https://en.wikipedia.org/wiki/1877_Iquique_earthquake",
+        xpathExpr: "//span[contains(@class, 'notifications__title') and (contains(text(), 'Товар распродан') or contains(text(), 'Дата поступления неизвестна'))]"
+    },
+    {
+        url: "https://en.wikipedia.org/wiki/Parliament_of_Australia",
+        xpathExpr: "//a"
+    },
+    {
+        url: "https://en.wikipedia.org/wiki/Francis_Hopkinson",
+        xpathExpr: "//a"
+    },
+];

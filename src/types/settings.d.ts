@@ -19,6 +19,7 @@ interface Settings {
     navOptions: NavOptions,
     bypassProxyHosts: string[],
     executablePath: string,
+    inputWebsites: InputWebsite[],
 }
 interface ResponseInfoCodes {
     success: number,
@@ -113,4 +114,9 @@ interface Options {
         username: string,
         password: string,
     }
+}
+
+interface InputWebsite {
+    url: string,
+    xpathExpr: string,
 }
