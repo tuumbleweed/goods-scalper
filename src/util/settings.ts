@@ -21,6 +21,8 @@ export function getSettings(): Settings {
     settings.secret.pgPassword = secret.POSTGRES_PASSWORD;
     settings.secret.pgDatabase = secret.POSTGRES_DB;
     settings.secret.apiToken = secret.API_TOKEN;
+    settings.secret.sendgridApiKey = secret.SENDGRID_API_KEY;
+    settings.secret.adminEmail = secret.ADMIN_EMAIL;
     settings.redisOptions.host = cmdArgs.docker
         ? settings.redisOptions.dockerHost
         : settings.redisOptions.regularHost;

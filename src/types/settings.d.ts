@@ -51,6 +51,8 @@ interface Secret {
     pgUser?: string,
     pgPassword?: string,
     pgDatabase?: string,
+    sendgridApiKey?: string,
+    adminEmail?: string,
 }
 interface CommandLineArguments {
     port?: number,

@@ -1,4 +1,5 @@
 import * as scalp from "../lib/scalp";
+import * as email from "../lib/email";
 import { createBrowserContext, launchBrowser } from "../lib/browser";
 import log from "../util/logger";
 
@@ -14,6 +15,7 @@ async function main(): Promise<number> {
 
     const urlList = await scalp.scalpAll(context);
     log.info(urlList);
+    await email.sendEmail(urlList);
 
     return 0;
 }

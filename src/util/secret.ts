@@ -10,6 +10,8 @@ export const POSTGRES_USER = process.env["POSTGRES_USER"];
 export const POSTGRES_DB = process.env["POSTGRES_DB"];
 export const LOG_LEVEL = process.env["LOG_LEVEL"];
 export const LOG_LEVEL_FILE = process.env["LOG_LEVEL_FILE"];
+export const SENDGRID_API_KEY = process.env["SENDGRID_API_KEY"];
+export const ADMIN_EMAIL = process.env["ADMIN_EMAIL"];
 
 const requiredVariables: string[][] = [
     [ENVIRONMENT, "ENVIRONMENT"],
@@ -20,6 +22,8 @@ const requiredVariables: string[][] = [
     [POSTGRES_DB, "POSTGRES_DB"],
     [LOG_LEVEL, "LOG_LEVEL"],
     [LOG_LEVEL_FILE, "LOG_LEVEL_FILE"],
+    [SENDGRID_API_KEY, "SENDGRID_API_KEY"],
+    [ADMIN_EMAIL, "ADMIN_EMAIL"],
 ];
 requiredVariables.forEach(elem => {
     if (!elem[0]) {
