@@ -15,7 +15,9 @@ async function main(): Promise<number> {
 
     const resultList = await scalp.scalpAll(context);
     log.info(resultList.map(result => result.url));
-    await email.sendEmail(resultList);
+    if (resultList.length) {
+        await email.sendEmail(resultList);
+    }
 
     return 0;
 }
