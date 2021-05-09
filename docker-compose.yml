@@ -1,0 +1,96 @@
+version: "3.8"
+
+x-logging:
+  &default-logging
+  driver: "json-file"
+  options:
+    max-size: "100m"
+
+services:
+
+  api:
+    image: ts-node-starter
+    build:
+      context: .
+      dockerfile: ./Dockerfile
+    depends_on:
+      - db
+      - redis
+    volumes:
+      - type: bind
+        source: ./tmp
+        target: /mnt/ts-node-starter/tmp
+        read_only: true
+      - type: bind
+        source: ../log
+        target: /mnt/log
+    links:
+      - db:database
+      - redis:redis
+    ports:
+      - target: 3000
+        published: 3001
+        protocol: tcp
+        mode: host
+    env_file:
+      - ./.env
+    deploy:
+      restart_policy:
+        condition: on-failure
+        delay: 5s
+        max_attempts: 3
+    working_dir: /mnt/ts-node-starter
+    logging: *default-logging
+    entrypoint: ["node", "dist/index.js", "api", "-p", "$PORT", "-d"]
+
+  example1:
+      image: ts-node-starter
+      depends_on:
+        - db
+        - redis
+      volumes:
+        - type: bind
+          source: ../log
+          target: /mnt/log
+      links:
+        - db:database
+        - redis:redis
+      working_dir: /mnt/ts-node-starter
+      logging: *default-logging
+      entrypoint: ["node", "dist/index.js", "example", "-d"]
+      deploy:
+        restart_policy:
+          condition: any
+          delay: 0s
+          window: 0s
+
+  redis:
+    image: redis:latest
+    logging: *default-logging
+    volumes:
+      - type: volume
+        source: redis-ts-node-starter
+        target: /data
+    ports:
+      - "127.0.0.1:6380:6379"
+
+  db:
+    image: postgres:latest
+    logging: *default-logging
+    volumes:
+      - type: volume
+        source: postgres-ts-node-starter
+        target: /var/lib/postgresql/data
+      - type: bind
+        source: ./src/sql/db.sql
+        target: /docker-entrypoint-initdb.d/init.sql
+    env_file:
+      - ./.env
+    ports:
+      - "127.0.0.1:5433:5432"
+    command: >
+      -c max_wal_size=2GB
+
+volumes:
+  redis-ts-node-starter:
+  postgres-ts-node-starter:

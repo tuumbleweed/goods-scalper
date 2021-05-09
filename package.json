@@ -1,0 +1,63 @@
+{
+    "name": "ts-node-starter",
+    "version": "0.0.1",
+    "description": "Node.js typescript starter template",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/vt156/ts-node-starter"
+    },
+    "author": "vt156",
+    "license": "ISC",
+    "scripts": {
+        "build": "tsc",
+        "watch-ts": "tsc -w",
+        "lint": "tsc --noEmit && eslint '**/*.{js,ts}' --quiet --fix",
+        "test": "jest --forceExit --coverage --verbose",
+        "api": "node dist/index.js api",
+        "example1": "nodemon dist/index.js example",
+        "generate-types": "dts-gen -m"
+    },
+    "dependencies": {
+        "abort-controller": "^3.0.0",
+        "body-parser": "^1.19.0",
+        "commander": "^6.1.0",
+        "compression": "^1.7.4",
+        "dotenv": "^8.2.0",
+        "express": "^4.17.1",
+        "libxmljs": "^0.19.7",
+        "n-readlines": "^1.0.0",
+        "node-fetch": "^2.6.1",
+        "pg": "^8.4.2",
+        "pg-copy-streams": "^5.1.1",
+        "process-list": "^2.0.0",
+        "proxy-agent": "^4.0.0",
+        "redis": "^3.0.2",
+        "rollbar": "^2.19.3",
+        "uuid4": "^2.0.2",
+        "winston": "^3.3.3",
+        "typescript": "^4.0.2",
+        "nodemon": "^2.0.6"
+    },
+    "devDependencies": {
+        "@types/commander": "^2.12.2",
+        "@types/compression": "^1.7.0",
+        "@types/eslint": "^7.2.2",
+        "@types/express": "^4.17.8",
+        "@types/jest": "^26.0.14",
+        "@types/libxmljs": "^0.18.6",
+        "@types/n-readlines": "^1.0.1",
+        "@types/node": "^14.10.2",
+        "@types/node-fetch": "^2.5.7",
+        "@types/pg": "^7.14.5",
+        "@types/pg-copy-streams": "^1.2.1",
+        "@types/redis": "^2.8.28",
+        "@types/winston": "^2.4.4",
+        "@typescript-eslint/eslint-plugin": "^4.1.1",
+        "@typescript-eslint/parser": "^4.1.1",
+        "dts-gen": "^0.6.0",
+        "eslint": "^7.9.0",
+        "jest": "^26.4.2",
+        "ts-jest": "^26.3.0",
+        "ts-node": "^9.0.0"
+    }
+}
