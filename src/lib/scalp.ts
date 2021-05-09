@@ -13,13 +13,14 @@ import settings from "../util/settings";
  * is out of stock" message.
  */
 export async function scalpAll(context: BrowserContext): Promise<{ url: string, image: string }[]> {
+    const screenshotDir = new Date().toJSON();
     const page = await createNewPage(context);
     const resultList: { url: string, image: string }[] = [];
 
     for (const website of settings.inputWebsites) {
         let result: {url: string, image: string};
         try {
-            result = await scalpWebsite(page, website);
+            result = await scalpWebsite(page, website, screenshotDir);
         } catch (err) {
             log.warn(err.message);
         }
@@ -39,14 +40,20 @@ export async function scalpAll(context: BrowserContext): Promise<{ url: string, 
  * @param website 
  * @returns url and screenshot if message not found, undefined if otherwise.
  */
-async function scalpWebsite(page: Page, website: InputWebsite): Promise<{ url: string, image: string }> {
+async function scalpWebsite(page: Page, website: InputWebsite, screenshotDir: string):
+Promise<{ url: string, image: string }> {
     const finalUrl = await goTo(page, website.url);
     const noneLeftNotification = await page.$(website.xpathExpr);
-    const buffer = await page.screenshot({ path: `./tmp/screenshots/${new Date()}.png`, fullPage: false });
+    const buffer = await page.screenshot({
+        path: `./tmp/screenshots/${screenshotDir}/${new Date().toTimeString()}.png`,
+        fullPage: false
+    });
 
     if (noneLeftNotification == undefined) {
+        log.verbose("Maybe found something");
         return {url: finalUrl, image: buffer.toString("base64")};
     } else {
+        log.verbose("Out of stock");
         return undefined;
     }
 }
