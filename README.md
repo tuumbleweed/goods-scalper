@@ -1,5 +1,5 @@
-# ts-node-starter
-Node.js typescript starter template
+# goods-scalper
+Check if desired item is in stock on the target websites
 
 
 ## Installation and usage
@@ -20,8 +20,8 @@ chmod +x /usr/local/bin/docker-compose
 ```
 ###### Clone the repo
 ```bash
-git clone git@github.com:vt156/ts-node-starter.git
-cd ts-node-starter
+git clone git@github.com:vt156/goods-scalper.git
+cd goods-scalper
 ```
 ###### Create .env file like .env.example
 ###### Install dependencies
