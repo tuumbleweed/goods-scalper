@@ -77,15 +77,23 @@ export const bypassProxyHosts = ["127.0.0.1", "localhost", "dockerhost"];
 
 export const inputWebsites: InputWebsite[] = [
     {
-        url: "https://en.wikipedia.org/wiki/1877_Iquique_earthquake",
+        url: "https://www.mvideo.ru/products/igrovaya-konsol-sony-playstation-5-digital-edition-40074203",
         xpathExpr: "//span[contains(@class, 'notifications__title') and (contains(text(), 'Товар распродан') or contains(text(), 'Дата поступления неизвестна'))]"
     },
     {
-        url: "https://en.wikipedia.org/wiki/Parliament_of_Australia",
-        xpathExpr: "//a"
+        url: "https://www.svyaznoy.ru/catalog/gamepad/9209/5796230",
+        xpathExpr: "//div[contains(@class, 'b-product-not-available')]"
     },
     {
-        url: "https://en.wikipedia.org/wiki/Francis_Hopkinson",
-        xpathExpr: "//a"
+        url: "https://shop.mts.ru/product/igrovaja-konsol-sony-playstation-5-digital-edition",
+        xpathExpr: "//div[contains(@class, 'soon-on-sale-block__text')]"
+    },
+    {
+        url: "https://www.dns-shop.ru/catalog/17a8978216404e77/konsoli-playstation/?q=playstation+5",
+        xpathExpr: "//h4[contains(text(), 'Странно, но ничего нет')]"
+    },
+    {
+        url: "https://sbermegamarket.ru/catalog/details/igrovaya-pristavka-sony-playstation-5-digital-edition-100027598944/",
+        xpathExpr: "//div[contains(@class, 'prod--disabled-caption')]"
     },
 ];
