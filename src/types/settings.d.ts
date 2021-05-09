@@ -9,6 +9,16 @@ interface Settings {
     pgOptions: PgOptions,
     startTimestamp?: number,
     fetchOptions: FetchOptions,
+    viewport: Viewport,
+    browserArgs: string[],
+    browserType?: "chromium" | "firefox" | "webkit",
+    allowedBrowsers: string[],
+    incognito?: boolean,
+    headless?: boolean,
+    userDataDir?: string,
+    navOptions: NavOptions,
+    bypassProxyHosts: string[],
+    executablePath: string,
 }
 interface ResponseInfoCodes {
     success: number,
@@ -22,6 +32,8 @@ interface ResponseErrorCodes {
     redisError: number,
     fetchUrlError: number,
     noValidProxiesFound: number,
+    browserTypeNotValid: number,
+    browserNavigationError: number,
 }
 interface CriticalErrorCodes {
     unknownError: number,
@@ -43,6 +55,9 @@ interface CommandLineArguments {
     port?: number,
     file?: string,
     number?: number,
+    keepBrowser?: boolean,
+    incognito?: boolean,
+    headless?: boolean,
 }
 interface RedisOptions {
     host?: string,
@@ -75,4 +90,27 @@ interface Proxy {
 }
 interface FetchOptions {
     defaultTimeout: number,
+}
+
+interface Viewport {
+    width: number,
+    height: number,
+}
+
+interface NavOptions {
+    afterNavMin: number,
+    afterNavMax: number,
+    defaultNavigationTimeout: number,
+}
+interface Options {
+    args: Settings["browserArgs"],
+    viewport: Settings["viewport"],
+    headless: boolean,
+    executablePath?: string,
+    proxy?: {
+        server: string,
+        bypass: string,
+        username: string,
+        password: string,
+    }
 }

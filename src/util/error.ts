@@ -79,6 +79,24 @@ Format should be: host:port:username:password`,
     }
 }
 
+export class browserTypeNotValid extends GenericCodedError {
+    constructor(browserType: string) {
+        super(
+            `Browser type ${browserType} is not in [${settings.allowedBrowsers}]`,
+            settings.responseCodes.errors.browserTypeNotValid
+        );
+    }
+}
+
+export class browserNavigationError extends GenericCodedError {
+    constructor(url: string) {
+        super(
+            `Cannot navigate to '${url}'`,
+            settings.responseCodes.errors.browserNavigationError
+        );
+    }
+}
+
 
 /**
  * Log error with appropriate log level.

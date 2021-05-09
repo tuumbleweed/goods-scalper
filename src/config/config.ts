@@ -13,6 +13,8 @@ export const responseCodes: ResponseCodes = {
         redisError: 42,
         fetchUrlError: 43,
         noValidProxiesFound: 44,
+        browserTypeNotValid: 45,
+        browserNavigationError: 46,
     },
     critical: {
         unknownError: 255,
@@ -42,3 +44,33 @@ export const pgOptions: PgOptions = {
 export const fetchOptions: FetchOptions = {
     defaultTimeout: 5000,
 };
+
+export const browserArgs = [
+    "--disable-setuid-sandbox",
+    "--disable-dev-shm-usage",
+    "--disable-infobars",
+    "--window-position=0,0",
+    "--ignore-certifcate-errors",
+    "--ignore-certifcate-errors-spki-list",
+    "--password-store=basic",
+    "--use-mock-keychain",
+    "--no-first-run",
+    "--disable-notifications",
+];
+
+export const viewport: Viewport = {
+    width: 1366,
+    height: 768,
+};
+
+export const userDataDir = "/tmp/browser-data-dir";
+export const executablePath = "/usr/bin/google-chrome";
+export const allowedBrowsers = ["chromium", "firefox", "webkit"];
+
+export const navOptions: NavOptions = {
+    afterNavMin: 4758,
+    afterNavMax: 7246,
+    defaultNavigationTimeout: 20000,
+};
+
+export const bypassProxyHosts = ["127.0.0.1", "localhost", "dockerhost"];

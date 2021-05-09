@@ -12,6 +12,10 @@ export function getSettings(): Settings {
     settings.cla.file = cmdArgs.file;
     settings.cla.number = parseInt(cmdArgs.number);
     settings.startTimestamp = Date.now();
+    settings.cla.keepBrowser = cmdArgs.keep;
+    settings.cla.incognito = cmdArgs.incognito;
+    settings.cla.headless = cmdArgs.headless;
+    settings.browserType = cmdArgs.browser;
     settings.secret.rollbarToken = secret.ROLLBAR_TOKEN;
     settings.secret.pgUser = secret.POSTGRES_USER;
     settings.secret.pgPassword = secret.POSTGRES_PASSWORD;

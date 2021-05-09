@@ -3,6 +3,7 @@ import process from "process";
 import { snapshot } from "process-list";
 
 import log from "../util/logger";
+import settings from "../util/settings";
 import * as error from "../util/error";
 
 
@@ -120,5 +121,8 @@ export async function stopExecution(result: number): Promise<void> {
 
     await sleep(1000);
     log.debug(`Exiting with exitcode ${exitCode}`);
-    process.exit(exitCode);
+    if (!settings.cla.keepBrowser) {
+        log.silly(`process.exit(${exitCode})`);
+        process.exit(exitCode);
+    }
 }
