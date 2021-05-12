@@ -96,4 +96,8 @@ export const inputWebsites: InputWebsite[] = [
         url: "https://sbermegamarket.ru/catalog/details/igrovaya-pristavka-sony-playstation-5-digital-edition-100027598944/",
         xpathExpr: "//div[contains(@class, 'prod--disabled-caption')]"
     },
+    {
+        url: "https://www.eldorado.ru/cat/detail/igrovaya-pristavka-playstation-5-digital-edition/",
+        xpathExpr: "//a[contains(@class, 'item_subscription_link') and contains(text(), 'Сообщить о поступлении')]"
+    },
 ];
