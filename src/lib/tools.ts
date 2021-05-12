@@ -8,6 +8,16 @@ import * as error from "../util/error";
 
 
 /**
+ * Zero-pad number to a desired length
+ * @param num 
+ * @param length 
+ * @returns Zero-padded string
+ */
+export function zeroPad(num: number, length: number): string {
+    return (Array(length).join("0") + num).slice(-length);
+}
+
+/**
  * Get a random integer from min to max
  * @param min 
  * @param max 

@@ -1,9 +1,20 @@
 import { BrowserContext, Page } from "playwright";
 
-import { goTo, createNewPage } from "../lib/page";
+import { goTo, createNewPage } from "./page";
+import { zeroPad } from "./tools";
 import log from "../util/logger";
 import settings from "../util/settings";
 
+
+/**
+ * Get current local datetime in this format:
+ * 2021-05-11_08:06:20
+ */
+function getStringDateTime(): string {
+    const dt = new Date();
+    return `${dt.getFullYear()}-${zeroPad(dt.getMonth(), 2)}-${zeroPad(dt.getDate(), 2)}_`
+        + `${zeroPad(dt.getHours(), 2)}:${zeroPad(dt.getMinutes(), 2)}:${zeroPad(dt.getSeconds(), 2)}`;
+}
 
 /**
  * Iterate through settings.inputWebsites, run scalpWebsite.
@@ -13,7 +24,7 @@ import settings from "../util/settings";
  * is out of stock" message.
  */
 export async function scalpAll(context: BrowserContext): Promise<{ url: string, image: string }[]> {
-    const screenshotDir = new Date().toJSON();
+    const screenshotDir = getStringDateTime();
     const page = await createNewPage(context);
     const resultList: { url: string, image: string }[] = [];
 
