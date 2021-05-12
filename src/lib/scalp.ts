@@ -53,16 +53,19 @@ export async function scalpAll(context: BrowserContext): Promise<{ url: string, 
  */
 async function scalpWebsite(page: Page, website: InputWebsite, screenshotDir: string):
 Promise<{ url: string, image: string }> {
-    const finalUrl = await goTo(page, website.url);
+    const [finalUrl, statusCode] = await goTo(page, website.url);
     const noneLeftNotification = await page.$(website.xpathExpr);
     const buffer = await page.screenshot({
         path: `./tmp/screenshots/${screenshotDir}/${new Date().toTimeString()}.png`,
         fullPage: false
     });
 
-    if (noneLeftNotification == undefined) {
+    if (noneLeftNotification == undefined && statusCode == 200) {
         log.verbose("Maybe found something");
         return {url: finalUrl, image: buffer.toString("base64")};
+    } else if (statusCode > 399) {
+        log.warn(`Something is wrong, got status code ${statusCode}`);
+        return undefined;
     } else {
         log.verbose("Out of stock");
         return undefined;

@@ -26,7 +26,7 @@ export async function createNewPage(context: BrowserContext): Promise<Page> {
  * Visit url, wait for a few seconds.
  * Throw error.browserNavigationError if unable.
  */
-export async function goTo(page: Page, targetUrl: string): Promise<string> {
+export async function goTo(page: Page, targetUrl: string): Promise<[string, number]> {
 
     log.http(`Going to "${targetUrl}"`);
     let resp: Response;
@@ -55,5 +55,5 @@ export async function goTo(page: Page, targetUrl: string): Promise<string> {
         settings.navOptions.afterNavMin,
         settings.navOptions.afterNavMax,
     );
-    return page.url();
+    return [page.url(), resp.status()];
 }
