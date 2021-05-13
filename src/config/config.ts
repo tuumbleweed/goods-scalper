@@ -96,8 +96,16 @@ export const inputWebsites: InputWebsite[] = [
         url: "https://sbermegamarket.ru/catalog/details/igrovaya-pristavka-sony-playstation-5-digital-edition-100027598944/",
         xpathExpr: "//div[contains(@class, 'prod--disabled-caption')]"
     },
+    // {
+    //     url: "https://www.eldorado.ru/cat/detail/igrovaya-pristavka-playstation-5-digital-edition/",
+    //     xpathExpr: "//a[contains(@class, 'item_subscription_link') and contains(text(), 'Сообщить о поступлении')]"
+    // },
     {
-        url: "https://www.eldorado.ru/cat/detail/igrovaya-pristavka-playstation-5-digital-edition/",
-        xpathExpr: "//a[contains(@class, 'item_subscription_link') and contains(text(), 'Сообщить о поступлении')]"
+        url: "https://www.ozon.ru/product/igrovaya-konsol-playstation-5-belyy-207702520/",
+        xpathExpr: "//div[contains(@class, 'kxa6') and contains(text(), 'Узнать о поступлении')]"
+    },
+    {
+        url: "https://www.ozon.ru/context/detail/id/178337786/",
+        xpathExpr: "//div[contains(@class, 'kxa6') and contains(text(), 'Узнать о поступлении')]"
     },
 ];
