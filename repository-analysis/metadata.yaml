@@ -1,0 +1,37 @@
+schema_version: 1
+id: goods-scalper
+name: goods-scalper
+original_name: goods-scalper
+short_description: A TypeScript experiment that checks configured retailer pages for possible PlayStation 5 availability using browser automation and sends email alerts with screenshots.
+repository:
+  local_name: goods-scalper
+  url: https://github.com/tuumbleweed/goods-scalper
+  relationship: experiment
+  parent_project: null
+project:
+  type: personal
+  status: inactive
+  categories: [tooling]
+  start_date: null
+  end_date: null
+  date_precision: unknown
+  git_first_activity: "2021-05-09"
+  git_last_activity: "2021-05-13"
+technologies:
+  languages: [TypeScript, JavaScript, Bash]
+  frameworks: []
+  databases: []
+  messaging: []
+  infrastructure: []
+  tools: [Node.js, Playwright, SendGrid, Commander, Winston, Rollbar, npm, ESLint]
+links:
+  repository: https://github.com/tuumbleweed/goods-scalper
+  demo: null
+publication:
+  visibility: review_required
+  featured: false
+  show_criticism: false
+  review_status: unverified
+analysis:
+  analyzed_commit: 09953fced1dad7d237e8098e9b5475827563d489
+  analyzed_at: "2026-10-15"
