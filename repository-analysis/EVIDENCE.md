@@ -47,6 +47,15 @@ No commits dated May 10–11 are available. No inference of continuous work, act
 
 ## Publication risks
 
-No live credential file is tracked in the inspected tree; `.env.example` contains placeholders. This is not an exhaustive forensic secrets audit. Do not publish runtime logs without review: `src/util/secret.ts` logs environment values at debug level; `src/util/settings.ts` logs the settings object at verbose level, including secrets. Browser options and API request logging can also expose credentials or tokens. No secret values or personal contact addresses are reproduced here.
+A follow-up credential review scanned the available working-tree files (including ignored files outside dependency and environment-managed configuration mounts) and all unique path-associated Git blobs reachable through local refs and reflogs. Checks covered common provider token formats, private-key headers, credential-bearing URLs, quoted credential assignments, and generic high-entropy quoted literals outside the dependency lockfile. No actual credential was identified; `.env.example` assignments were placeholders, and the credential-URL match in `src/lib/fetch.ts` was interpolation of runtime proxy settings. This local pattern-based review is not an exhaustive forensic audit and cannot establish the absence of unknown secret formats or remotely retained objects.
+
+Confirmed exposure paths in code:
+
+- `src/util/secret.ts:33` logs environment values at debug level; `src/util/settings.ts:41` logs settings containing secrets at verbose level. `.env.example` enables `silly`, which includes these levels.
+- `src/controllers/api.ts:26` logs incoming API tokens; `src/lib/browser.ts:33` logs options that can contain proxy credentials.
+- `src/util/error.ts`, `PGError`, serializes the database connection configuration, including its password, into errors. `reportError` logs and forwards such errors to Rollbar.
+- `.dockerignore` excludes `.env.example` but not `.env`; `Dockerfile` uses `COPY ./ ./`, so a real local `.env` can be baked into an image despite Git exclusion.
+
+Historical runtime logs, Rollbar records, deployed images, and remote-only Git data were not available for this review. Actual exposure through these paths is unconfirmed. Review those artifacts before publishing them; rotate any still-active credentials if their exposure cannot be ruled out. No secret values or personal contact addresses are reproduced here.
 
 Docker/Express/PostgreSQL/Redis/Jest declarations are scaffold evidence, not evidence of a deployed backend, queue system, database-driven monitoring, or tested service. Public documentation must avoid claims of successful purchasing, proven detection accuracy, high scale, or reliable production operation.
